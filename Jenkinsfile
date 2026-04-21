@@ -25,5 +25,6 @@ pipeline {
         failure {
             echo 'Ansible playbook execution failed.'
     }
+    }
 
 }
