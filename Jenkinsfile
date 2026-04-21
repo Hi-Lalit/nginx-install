@@ -14,8 +14,7 @@ pipeline {
             steps {
                 sh 'ansible-playbook -i inventory.ini nginx-playbook.yml'
             }
-
-
+        }  
     }
 
     post {
@@ -24,7 +23,7 @@ pipeline {
         }
         failure {
             echo 'Ansible playbook execution failed.'
-    }
+        }  
     }
 
 }
