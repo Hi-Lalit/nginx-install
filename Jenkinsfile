@@ -2,13 +2,9 @@ pipeline {
     agent any
 
     stages {
-        stage('Install Ansible') {
+        stage('Checking Ansible version') {
             steps {
-                sh '''
-               
-                sudo apt-get update
-                sudo apt-get install -y ansible        
-                '''
+                sh 'sudo apt-get update'
                 sh 'ansible --version'      
             }
         }
