@@ -4,15 +4,15 @@ pipeline {
     stages {
         stage('install ansible') {
             steps {
-                sh 'apt-get update && apt-get install -y python3-pip'
-                sh 'pip install ansible'
+                sh 'sudo apt-get update && sudo apt-get install -y python3-pip'
+                sh 'sudo pip install ansible'
                 sh 'ansible --version'                
             }
         }
 
         stage('run ansible playbook') {
             steps {
-                sh 'ansible-playbook -i inventory.ini nginx-playbook.yml'
+                sh 'sudo ansible-playbook nginx-playbook.yml'
             }
         }  
     }
