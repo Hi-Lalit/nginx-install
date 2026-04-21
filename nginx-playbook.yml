@@ -1,4 +1,4 @@
-- name: Install Nginx on Web Server
+- name: Install Nginx on localhost
   hosts: localhost
   become: yes
 
@@ -12,3 +12,11 @@
       package:
         name: nginx
         state: present
+      become: yes
+
+    - name: Start and enable Nginx service
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+      become: yes
