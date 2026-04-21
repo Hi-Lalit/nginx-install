@@ -2,17 +2,24 @@ pipeline {
     agent any
 
     stages {
-        stage('install ansible') {
+        stage('Install Ansible') {
             steps {
-                sh 'sudo apt-get update && sudo apt-get install -y python3-pip'
-                sh 'sudo pip install ansible'
-                sh 'ansible --version'                
+                sh '''
+               
+                sudo apt-get update
+                sudo apt-get install -y ansible        
+                '''
+                sh 'ansible --version'      
             }
         }
 
-        stage('run ansible playbook') {
+        stage('Run Ansible Playbook') {
             steps {
-                sh 'sudo ansible-playbook nginx-playbook.yml'
+                ansiblePlaybook(
+                    playbook: 'nginx-playbook.yml',                    
+                    credentialsId: 'aws-ec2-ssh',
+                    disableHostKeyChecking: true
+                )
             }
         }  
     }
@@ -25,5 +32,4 @@ pipeline {
             echo 'Ansible playbook execution failed.'
         }  
     }
-
 }
