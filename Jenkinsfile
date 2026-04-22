@@ -23,8 +23,7 @@ pipeline {
             steps {
                 sh '''
                 IP=$(curl -s ifconfig.me)
-                echo "Access Nginx server at:"
-                echo "http://$IP"
+                echo "Access Nginx server at: http://$IP"                
                 '''
             }
         }
