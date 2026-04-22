@@ -1,12 +1,13 @@
-- name: Install Nginx on localhost
+- name: Install Nginx
   hosts: localhost
-  become: yes
-
+  become_method: su
+  become_exe: sudo su -
   tasks:
 
     - name: Update apt cache
       apt:
         update_cache: yes
+      become: yes
 
     - name: Install Nginx
       package:

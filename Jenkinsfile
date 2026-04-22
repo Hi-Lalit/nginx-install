@@ -18,14 +18,24 @@ pipeline {
                 )
             }
         }  
+
+        stage('Print URL') {
+            steps {
+                sh '''
+                IP=$(curl -s ifconfig.me)
+                echo "Access Nginx server at:"
+                echo "http://$IP"
+                '''
+            }
+        }
     }
 
     post {
         success {
-            echo 'Ansible playbook executed successfully.'
+            echo 'Nginx successfully installed and running.'
         }
         failure {
-            echo 'Ansible playbook execution failed.'
+            echo 'Pipeline failed to install and run Nginx.'
         }  
     }
 }
